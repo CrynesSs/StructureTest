@@ -1,0 +1,4 @@
+{
+  "loader": "crystal_mod:floating_crystal",
+  "ambientocclusion": false
+}

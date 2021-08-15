@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "crystal_mod:block/floating_crystal"
+    }
+  }
+}
