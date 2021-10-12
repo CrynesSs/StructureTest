@@ -1,7 +1,7 @@
 package com.example.Util.Events;
 
+import com.example.Core.ConfiguredStructures;
 import com.example.Core.CrystalMod;
-import com.example.Util.Init.ConfiguredFeatures;
 import com.example.Util.Init.StructureInit;
 import com.mojang.serialization.Codec;
 import net.minecraft.util.ResourceLocation;
@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = CrystalMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = CrystalMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeBus {
     @SubscribeEvent
     public static void onRenderWorld(RenderGameOverlayEvent.Post event) {
@@ -43,7 +43,7 @@ public class ForgeBus {
          * RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName()) to get the biome's
          * registrykey. Then that can be fed into the dictionary to get the biome's types.
          */
-        event.getGeneration().getStructures().add(() -> ConfiguredFeatures.CONFIGURED_TEST_STRUCTURE);
+        event.getGeneration().getStructures().add(() -> ConfiguredStructures.CONFIGURE_TEST_STRUCTURE);
     }
 
     private static Method GETCODEC_METHOD;

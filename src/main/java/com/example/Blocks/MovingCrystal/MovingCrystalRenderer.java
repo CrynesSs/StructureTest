@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MovingCrystalRenderer extends TileEntityRenderer<MovingCrystalBE> {
     public MovingCrystalRenderer(TileEntityRendererDispatcher p_i226006_1_) {
@@ -18,6 +19,7 @@ public class MovingCrystalRenderer extends TileEntityRenderer<MovingCrystalBE> {
     @Override
     public void render(MovingCrystalBE tile, float p_225616_2_, MatrixStack mat, IRenderTypeBuffer buffer, int light, int otherlight) {
         double[] offset = tile.getOffset();
+
         mat.translate(offset[0], offset[1], offset[2]);
         Minecraft.getInstance().getBlockRenderer().getModelRenderer().renderModel(
                 tile.getLevel(),

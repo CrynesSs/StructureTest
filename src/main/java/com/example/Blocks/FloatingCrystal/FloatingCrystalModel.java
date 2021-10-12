@@ -6,8 +6,10 @@ import com.example.Util.Quads.CoordinateStorage;
 import com.example.Util.Quads.QuadCreator;
 import com.example.Util.Quads.QuadHelper;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.BakedQuad;
+import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -29,7 +31,7 @@ public class FloatingCrystalModel implements IDynamicBakedModel {
 
     }
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(CrystalMod.MOD_ID, "block/floating_crystal");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(CrystalMod.MODID, "block/floating_crystal");
 
     @Override
     public TextureAtlasSprite getParticleTexture(@Nonnull IModelData data) {
@@ -41,6 +43,8 @@ public class FloatingCrystalModel implements IDynamicBakedModel {
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData) {
         List<BakedQuad> quads = new ArrayList<>();
         Vector3d[] cs = CoordinateStorage.DOUBLE_PYRAMID_SLIM_POINTS;
+        IBakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(Blocks.ACACIA_STAIRS.defaultBlockState());
+
         if (side == null) {
             for (int i = 0; i < 4; ++i) {
                 quads.add(QuadCreator.createTriangle(cs[4], cs[i], cs[(i + 1) % 4], getParticleIcon(), null));

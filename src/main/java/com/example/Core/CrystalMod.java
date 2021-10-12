@@ -3,7 +3,6 @@ package com.example.Core;
 import com.example.Util.Init.BlockEntityInit;
 import com.example.Util.Init.BlockInit;
 import com.example.Util.Init.ItemInit;
-import com.example.Util.Init.StructureInit;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -19,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 public class CrystalMod {
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
-    public static final String MOD_ID = "crystal_mod";
+    public static final String MODID = "crystal_mod";
 
     public CrystalMod() {
         // Register the setup method for modloading
@@ -27,10 +26,9 @@ public class CrystalMod {
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
         BlockEntityInit.TILE_ENTITY_TYPES.register(bus);
-        StructureInit.STRUCTURES.register(bus);
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
     }
 
     public static final ItemGroup MMO = new ItemGroup("MMO") {

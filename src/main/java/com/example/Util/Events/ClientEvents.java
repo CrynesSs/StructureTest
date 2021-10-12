@@ -22,7 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.awt.*;
 
-@Mod.EventBusSubscriber(modid = CrystalMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = CrystalMod.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvents {
 
     @SubscribeEvent
@@ -42,8 +42,8 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onLoaderRegister(ModelRegistryEvent event) {
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(CrystalMod.MOD_ID, "floating_crystal"), new FloatingCrystalLoader());
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(CrystalMod.MOD_ID, "anim"), AnimatedBakedModel.AnimLoader.INSTANCE);
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(CrystalMod.MODID, "floating_crystal"), new FloatingCrystalLoader());
+        ModelLoaderRegistry.registerLoader(new ResourceLocation(CrystalMod.MODID, "anim"), AnimatedBakedModel.AnimLoader.INSTANCE);
     }
 
 }

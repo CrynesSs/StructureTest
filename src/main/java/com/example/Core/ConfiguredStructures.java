@@ -1,6 +1,6 @@
-package com.example.Util.Init;
+package com.example.Core;
 
-import com.example.Core.CrystalMod;
+import com.example.Util.Init.StructureInit;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -8,20 +8,14 @@ import net.minecraft.world.gen.FlatGenerationSettings;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 
-public class ConfiguredFeatures {
+public class ConfiguredStructures {
 
-    public static StructureFeature<?, ?> CONFIGURED_TEST_STRUCTURE = StructureInit.TEST_STRUCTURE.get().configured(IFeatureConfig.NONE);
+    public static final StructureFeature<?, ?> CONFIGURE_TEST_STRUCTURE = StructureInit.TEST_STRUCTURE.get().configured(IFeatureConfig.NONE);
 
-    /**
-     * Registers the configured structure which is what gets added to the biomes.
-     * Noticed we are not using a forge registry because there is none for configured structures.
-     *
-     * We can register configured structures at any time before a world is clicked on and made.
-     * But the best time to register configured features by code is honestly to do it in FMLCommonSetupEvent.
-     */
     public static void registerConfiguredStructures() {
         Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
-        Registry.register(registry, new ResourceLocation(CrystalMod.MOD_ID, "configured_test_structure"), CONFIGURED_TEST_STRUCTURE);
+
+        Registry.register(registry, new ResourceLocation(CrystalMod.MODID, "configured_run_down_house"), CONFIGURE_TEST_STRUCTURE);
 
         /* Ok so, this part may be hard to grasp but basically, just add your structure to this to
          * prevent any sort of crash or issue with other mod's custom ChunkGenerators. If they use
@@ -38,6 +32,9 @@ public class ConfiguredFeatures {
          *
          * Requires AccessTransformer ( see resources/META-INF/accesstransformer.cfg )
          */
-        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureInit.TEST_STRUCTURE.get(), CONFIGURED_TEST_STRUCTURE);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureInit.TEST_STRUCTURE.get(), CONFIGURE_TEST_STRUCTURE);
     }
+
+
+
 }

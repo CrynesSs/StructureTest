@@ -1,6 +1,5 @@
 package com.example.Util.Init;
 
-import com.example.Blocks.StructureTest.LargeStructure.LargeStructure;
 import com.example.Blocks.StructureTest.TestStructure.TestStructure;
 import com.example.Core.CrystalMod;
 import com.google.common.collect.ImmutableList;
@@ -18,13 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StructureInit {
-    public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, CrystalMod.MOD_ID);
-    public static final RegistryObject<LargeStructure> LARGE_STRUCTURE = STRUCTURES.register("large_structure",
-            () -> new LargeStructure(NoFeatureConfig.CODEC));
-    public static final RegistryObject<TestStructure> TEST_STRUCTURE = STRUCTURES.register("test",
-            () -> new TestStructure(NoFeatureConfig.CODEC));
+    public static final DeferredRegister<Structure<?>> DEFERRED_REGISTRY_STRUCTURE = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, CrystalMod.MODID);
+    public static final RegistryObject<Structure<NoFeatureConfig>> TEST_STRUCTURE = DEFERRED_REGISTRY_STRUCTURE.register("test_structure", () -> (new TestStructure(NoFeatureConfig.CODEC)));
 
-    //*Configured Structures
+
 
     public static void setupStructures() {
         setupMapSpacingAndLand(
@@ -37,11 +33,11 @@ public class StructureInit {
 
         // Add more structures here and so on
     }
-
     public static <F extends Structure<?>> void setupMapSpacingAndLand(
             F structure,
             StructureSeparationSettings structureSeparationSettings,
-            boolean transformSurroundingLand) {
+            boolean transformSurroundingLand)
+    {
         /*
          * We need to add our structures into the map in Structure class
          * alongside vanilla structures or else it will cause errors.
@@ -61,7 +57,7 @@ public class StructureInit {
          *
          * NOISE_AFFECTING_FEATURES requires AccessTransformer  (See resources/META-INF/accesstransformer.cfg)
          */
-        if (transformSurroundingLand) {
+        if(transformSurroundingLand){
             Structure.NOISE_AFFECTING_FEATURES =
                     ImmutableList.<Structure<?>>builder()
                             .addAll(Structure.NOISE_AFFECTING_FEATURES)
@@ -105,13 +101,15 @@ public class StructureInit {
              *
              * structureConfig requires AccessTransformer  (See resources/META-INF/accesstransformer.cfg)
              */
-            if (structureMap instanceof ImmutableMap) {
+            if(structureMap instanceof ImmutableMap){
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, structureSeparationSettings);
                 settings.getValue().structureSettings().structureConfig = tempMap;
-            } else {
+            }
+            else{
                 structureMap.put(structure, structureSeparationSettings);
             }
         });
     }
+
 }
